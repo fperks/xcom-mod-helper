@@ -20,6 +20,9 @@ Usage: XCOMEUModHelper -c <config file>.xml
 ```
 
 The application takes a configuration file as a parameter, which specifies which hex strings need to be patched. 
+Only unique matches are patched, so if the hex string is not unique it will result in an error. 
+
+Note: You do not need to specify the XCOM Directory, it is automatically determined through the registry. 
 
 Example Config
 --------------
