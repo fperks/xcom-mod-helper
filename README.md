@@ -1,7 +1,11 @@
 XCOM Enemy Unknown Mod Helper
 =============================
 
-This tool allows for automatic patching of XCOM Enemy Unknown. 
+This tool allows for automatic patching of XCOM Enemy Unknown and Enemy Within. 
+
+Credits
+-------
+* johnnylump
 
 Usage
 ------
@@ -33,9 +37,9 @@ Example Usage
 > XCOMModHelper -g EW -c EWConfig.xml
 ```
 
-This would patch the enemy within executable with the corresponding configuration file
+This would patch the enemy within executable with the enemy within configuration file.
 
-Example Enemy Within Config
+Enemy Within Config
 ---------------------------
 
 ```xml
@@ -49,7 +53,7 @@ Example Enemy Within Config
 </Config>
 ```
 
-Example Enemy Unknown Config
+Enemy Unknown Config
 ----------------------------
 
 ```xml
