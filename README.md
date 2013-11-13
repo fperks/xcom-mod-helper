@@ -1,7 +1,8 @@
-XCOM Enemy Unknown Mod Helper
-=============================
+XCOM Enemy Unknown/Enemy Within Mod Helper
+===========================================
 
-This tool allows for automatic patching of XCOM Enemy Unknown and Enemy Within. 
+This tool allows for patching of XCOM Enemy Unknown and Enemy Within executable to help mods. For example, the tool can patch the game to allow for changes to be made to DefaultGameCore.ini,
+and force the game to read it from the configuration directory. Without the need of using modpatcher.
 
 Credits
 -------
