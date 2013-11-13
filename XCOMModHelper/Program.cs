@@ -55,7 +55,7 @@ namespace XCOMModHelper
                 InstallManager = {XCOMInstallDirectory = options.XCOMInstallDirectory},
             };
 
-            Log.Info("==========XCOMModHelper========\n");
+            Log.Info("==========XCOMModHelper========");
 
             try
             {

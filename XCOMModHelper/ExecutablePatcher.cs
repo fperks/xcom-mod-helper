@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using NLog;
 
 namespace XCOMModHelper
 {
     public class ExecutablePatcher
     {
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
         private byte[] _executableData;
 
         public byte[] ExecutableData
@@ -52,7 +55,7 @@ namespace XCOMModHelper
             }
 
             var index = indexes.First();
-            Console.WriteLine("Patching at Index [ {0} ]", index);
+            Log.Info("Applying Patch at Index [ {0} ]", index);
             Array.Copy(patchData, 0, ExecutableData, index, patchData.Length);
         }
     }

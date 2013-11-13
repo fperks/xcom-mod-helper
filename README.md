@@ -8,6 +8,31 @@ Credits
 -------
 * johnnylump
 
+Quickstart (Enemy Within)
+----------------------------
+
+To allow for reading of DefaultGameCore.ini from XEW/XCOMGame/Config folder
+
+* Download the latest release
+* Unzip to a directory
+* Open Command prompt, and navigate to the directory you unzipped it to
+* Execute: XCOMModHelper -g EW -c EWConfig.xml
+
+Output:
+```
+D:\Workspace\xcom-mod-helper\XCOMModHelper\bin\Debug>XCOMModHelper.exe -g EW -c EWConfig.xml
+[INFO]> ==========XCOMModHelper========
+[INFO]> Attempting to Locate XCOM Install Directory
+[INFO]> Using XCOM Installation Directory of [ x:\steam\SteamApps\common\XCom-Enemy-Unknown ]
+[INFO]> Loading Configuration File [ EWConfig.xml ]
+[INFO]> Backing up [ x:\steam\SteamApps\common\XCom-Enemy-Unknown\XEW\Binaries\Win32\XComEW.exe ] to [ x:\steam\SteamApp
+s\common\XCom-Enemy-Unknown\XEW\Binaries\Win32\bXComEW.exe ]
+[INFO]> Applying Patches to [ x:\steam\SteamApps\common\XCom-Enemy-Unknown\XEW\Binaries\Win32\XComEW.exe ]
+[INFO]> Applying Patch at Index [ 21464864 ]
+[INFO]> Patching of [ x:\steam\SteamApps\common\XCom-Enemy-Unknown\XEW\Binaries\Win32\XComEW.exe ] was successful
+[INFO]> Finished
+```
+
 Usage
 ------
 

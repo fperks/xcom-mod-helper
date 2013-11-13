@@ -47,13 +47,13 @@ namespace XCOMModHelper
         {
             var backupFile = Path.Combine(InstallInfo.XCOMBinaryDirectory, 
                 ProductType == XCOMProductType.XCOMEnemyUnknown ? Common.DefaultXCOMEUBackupExecutableName : Common.DefaultXCOMEWBackupExecutableName);
-            Log.Info("Backing up XCOMGame to [ {0} ]", backupFile);
+            Log.Info("Backing up [ {0} ] to [ {1} ]", InstallInfo.XCOMExecutablePath, backupFile);
             File.Copy(InstallInfo.XCOMExecutablePath, backupFile, true);
         }
 
         private void ApplyPatches()
         {
-            Log.Info("Applying Patches");
+            Log.Info("Applying Patches to [ {0} ]", InstallInfo.XCOMExecutablePath);
 
             // Apply all of the patches to the executable
             foreach (var patch in ConfigManager.Patches)
@@ -74,7 +74,7 @@ namespace XCOMModHelper
                 Patcher.ApplyPatch(findBytes, replaceBytes);                
             }
 
-            Log.Info("Patches Applied Successfully");
+            Log.Info("Patching of [ {0} ] was successful", InstallInfo.XCOMExecutablePath);
         }
 
     }

@@ -32,8 +32,6 @@ namespace XCOMModHelper
                 var replace = patch.Replace.Trim();
 
                 Patches.Add(new Tuple<string, string>(find, replace));
-
-                //Console.WriteLine("Find[{0}], Replace[{1}]", find, replace);
             }
         }
     }
