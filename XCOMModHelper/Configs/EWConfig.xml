@@ -22,17 +22,5 @@
         </PatchEntry>
       </Patches>
     </PatchTarget>
-    <PatchTarget>
-      <!-- Example of trying to patch a UPK File-->
-      <TargetPath>XEW\XComGame\CookedPCConsole\XComGame.upk</TargetPath>
-      <IsUPKFile>true</IsUPKFile>
-      <Patches>
-        <PatchEntry>
-          <Description>Changes Gender Chance from 1/2 chance of female, to 1/8 chance of female</Description>
-          <FindValue>45 9A A7 2C 02 16</FindValue>
-          <ReplaceValue>45 9A A7 2C 08 16</ReplaceValue>
-        </PatchEntry>
-      </Patches>
-    </PatchTarget>
   </PatchTargets>
 </PatcherConfiguration>

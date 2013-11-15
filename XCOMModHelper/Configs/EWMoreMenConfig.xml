@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PatcherConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!-- The backup Directory, this is a relative path from XCOM Root, that is expanded -->
+  <BackupDirectory>XEW\Backup</BackupDirectory>
+  <!-- The folder to temporarily put decompressed UPK files Directory -->
+  <DecompressedUPKOutputDirectory>XEW\UpkUnpacked</DecompressedUPKOutputDirectory>
+  <!-- These are the Patching target files, each patch target specifies a single file-->
+  <PatchTargets>
+    <PatchTarget>
+      <!-- Example of trying to patch a UPK File-->
+      <TargetPath>XEW\XComGame\CookedPCConsole\XComGame.upk</TargetPath>
+      <IsUPKFile>true</IsUPKFile>
+      <Patches>
+        <PatchEntry>
+          <Description>Changes Gender Chance from 1/2 chance of female, to 1/8 chance of female</Description>
+          <FindValue>45 9A A7 2C 02 16</FindValue>
+          <ReplaceValue>45 9A A7 2C 08 16</ReplaceValue>
+        </PatchEntry>
+      </Patches>
+    </PatchTarget>
+  </PatchTargets>
+</PatcherConfiguration>

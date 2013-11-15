@@ -78,7 +78,7 @@ Example Usage
 
 This would patch the enemy within executable with the enemy within configuration file.
 
-Enemy Within Config
+Enemy Within Sample Config
 ---------------------------
 
 ```xml
