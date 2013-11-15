@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace XCOMModHelper
+namespace XCOMModHelper.Util
 {
     public static class Utilities
     {
@@ -18,7 +18,7 @@ namespace XCOMModHelper
             var findBytes = find.GetByteArrayFromHexString();
             var replaceBytes = replace.GetByteArrayFromHexString();
 
-            Console.WriteLine("BF> {0}", string.Join(" ", findBytes.Select(b => String.Format("{0,3}", b.ToString(CultureInfo.InvariantCulture)))));
+            Console.WriteLine("BF> {0}", string.Join(" ", findBytes.Select(b => String.Format((string) "{0,3}", (object) b.ToString(CultureInfo.InvariantCulture)))));
             Console.WriteLine("BR> {0}", string.Join(" ", replaceBytes.Select(b => String.Format("{0,3}", b.ToString(CultureInfo.InvariantCulture)))));
         }
 

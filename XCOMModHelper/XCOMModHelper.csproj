@@ -48,17 +48,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common.cs" />
-    <Compile Include="ConfigurationManager.cs" />
-    <Compile Include="ExecutablePatcher.cs" />
+    <Compile Include="Exceptions\PatchExcepion.cs" />
+    <Compile Include="Patcher\IFilePatcher.cs" />
+    <Compile Include="Patcher\FilePatcher.cs" />
+    <Compile Include="Patcher\PatcherConfiguration.cs" />
+    <Compile Include="Patcher\PatchTarget.cs" />
+    <Compile Include="Patcher\PatchState.cs" />
+    <Compile Include="Patcher\PatchEntry.cs" />
+    <Compile Include="Patcher\UPKPatcher.cs" />
     <Compile Include="ProgramOptions.cs" />
-    <Compile Include="XCOMInstallInfo.cs" />
-    <Compile Include="XCOMInstallManager.cs" />
+    <Compile Include="Util\SteamUtilities.cs" />
+    <Compile Include="Util\Utilities.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SteamUtilities.cs" />
-    <Compile Include="Utilities.cs" />
     <Compile Include="XCOMModHelper.cs" />
-    <Compile Include="XCOMProductType.cs" />
+    <Compile Include="XCOMUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

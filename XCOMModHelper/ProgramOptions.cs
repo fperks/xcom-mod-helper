@@ -5,8 +5,8 @@ namespace XCOMModHelper
 {
     class ProgramOptions
     {
-        [Option('g', "gametype", Required = true, HelpText = "Specify the XCOM Game Type to Patch Valid Types are EU (Enemy Unknown) or EW (Enemy Within)")]
-        public string XCOMGameType { get; set; }
+        //[Option('g', "gametype", Required = true, HelpText = "Specify the XCOM Game Type to Patch Valid Types are EU (Enemy Unknown) or EW (Enemy Within)")]
+        //public string XCOMGameType { get; set; }
 
         [Option('c', "config", Required = true, HelpText = "The required configuration file")]
         public string ConfigurationFile { get; set; }
@@ -14,8 +14,11 @@ namespace XCOMModHelper
         [Option('v', "verbose", DefaultValue = false, HelpText = "Prints Detailed Output")]
         public bool Verbose { get; set; }
 
+        [Option('t', "test", DefaultValue = false, HelpText = "Attempts to apply the patches but does not write the changes")]
+        public bool IsTest { get; set; }
+
         [Option('x', "xcomdir", HelpText = "Specify the Path to XCOM Root Install Directory, this is optional and will be automatically determined")]
-        public string XCOMInstallDirectory { get; set; }
+        public string UserDefinedXCOMRootDirectory { get; set; }
 
         [HelpOption]
         public string GetUsage()
@@ -28,7 +31,7 @@ namespace XCOMModHelper
                 AdditionalNewLineAfterOption = true
             };
 
-            helpText.AddPreOptionsLine("Usage: XCOMModHelper -g <EU|EW> -c <config file>.xml");
+            helpText.AddPreOptionsLine("Usage: XCOMModHelper -c <config file>.xml");
             helpText.AddOptions(this);
             return helpText;
         }

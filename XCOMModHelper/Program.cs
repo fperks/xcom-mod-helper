@@ -6,6 +6,7 @@ using CommandLine;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using XCOMModHelper.Patcher;
 
 namespace XCOMModHelper
 {
@@ -23,6 +24,8 @@ namespace XCOMModHelper
 
             InitializeLogging(options.Verbose);
 
+            TestSerialization();
+
             var configFile = options.ConfigurationFile;
             if (!File.Exists(configFile))
             {
@@ -30,32 +33,26 @@ namespace XCOMModHelper
                 return -1;
             }
             
-            var gameType = options.XCOMGameType.ToUpper();
-            if (!Common.XCOMProductTypeMapper.ContainsKey(gameType))
+            if (!string.IsNullOrEmpty(options.UserDefinedXCOMRootDirectory))
             {
-                Log.Error("Game Type of [ {0} ] is Invalid, Valid types are: {1}", gameType, string.Join(",", Common.XCOMProductTypeMapper.Keys));
-                return -1;
-            }
-            
-            if (!string.IsNullOrEmpty(options.XCOMInstallDirectory))
-            {
-                if (!Directory.Exists(options.XCOMInstallDirectory))
+                if (!Directory.Exists(options.UserDefinedXCOMRootDirectory))
                 {
-                    Log.Error("The Specified XCOM Install Directory [ {0} ] is not valid", options.XCOMInstallDirectory);
+                    Log.Error("The Specified XCOM Root Directory [ {0} ] is not valid", options.UserDefinedXCOMRootDirectory);
                     return -1;
                 }
             }
             
-            var productType = Common.XCOMProductTypeMapper[gameType];
             var modHelper = new XCOMModHelper
             {
                 ConfigurationFile = options.ConfigurationFile,
                 IsVerbose = options.Verbose,
-                ProductType = productType,
-                InstallManager = {XCOMInstallDirectory = options.XCOMInstallDirectory},
+                IsPatchTest = options.IsTest,
+                XCOMRootDirectory = options.UserDefinedXCOMRootDirectory
             };
 
             Log.Info("==========XCOMModHelper========");
+
+            //modHelper.Execute();
 
             try
             {
@@ -63,13 +60,56 @@ namespace XCOMModHelper
             }
             catch (Exception err)
             {
-                Log.Error("An Error occured during processing:\n");
-                Log.Error(err);
+                Log.Error("An Error occured during processing:{0}", err.Message);
+                //Log.Error(err);
                 Log.Error("\nThe Patching Process was Aborted");
                 return -1;
             }
             Log.Info("Finished");
             return 0;
+        }
+
+        private static void TestSerialization()
+        {
+            var config = new PatcherConfiguration()
+            {
+                BackupDirectory = @"XEW\Backup",
+                DecompressedUPKOutputDirectory = @"XEW\UpkUnpacked"
+            };
+
+            config.Targets.Add(new PatchTarget()
+            {
+                TargetPath = @"XEW\Binaries\Win32\XComEW.exe",
+                IsUPKFile = false,
+                PatchEntries =
+                {
+                    new PatchEntry()
+                    {
+                        Description = "Read DefaultGameCore.ini from Config Folder",
+                        FindValue =
+                            "   25 00 64 00 00 00 00 00 49 00 6e 00 69 00 56 00 65 00 72 00 73 00 69 00 6f 00 6e 00 00 00 00 00 2e 00 2e 00 5c 00 2e 00 2e 00 5c 00 58 00 43 00 ",
+                        ReplaceValue =
+                            "   25 00 64 00 00 00 00 00 49 00 6e 00 69 00 56 00 65 00 72 00 73 00 69 00 6f 00 6e 00 00 00 00 00 2e 00 2e 00 5c 00 2e 00 2e 00 5c 00 57 00 43 00 "
+                    }
+                }
+            });
+
+            config.Targets.Add(new PatchTarget()
+            {
+                IsUPKFile = true,
+                TargetPath = @"XEW\XComGame\CookedPCConsole\XComGame.upk",
+                PatchEntries =
+                {
+                    new PatchEntry()
+                    {
+                        Description = "Changes Gender Chance from 1/2 chance of female, to 1/8 chance of female",
+                        FindValue = "45 9A A7 2C 02 16",
+                        ReplaceValue = "45 9A A7 2C 08 16"
+                    }
+                }                
+            });
+
+            PatcherConfiguration.WriteConfiguration(config, "test_config.xml");
         }
 
         private static void InitializeLogging(bool isVerbose)
