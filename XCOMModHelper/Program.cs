@@ -24,7 +24,7 @@ namespace XCOMModHelper
 
             InitializeLogging(options.Verbose);
 
-            TestSerialization();
+            //TestSerialization();
 
             var configFile = options.ConfigurationFile;
             if (!File.Exists(configFile))

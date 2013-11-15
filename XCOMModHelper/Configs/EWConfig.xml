@@ -1,13 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PatcherConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<BackupFolderPath>XEW\Backup</BackupFolderPath>
-	<Patches>
-		<Patch>
-			<Description>Read DefaultGameCore.ini from Config Folder</Description>
-			<TargetPath>XEW\Binaries\Win32\XComEW.exe</TargetPath>
-			<IsUPKFile>false</IsUPKFile>
-			<FindValue>   25 00 64 00 00 00 00 00 49 00 6e 00 69 00 56 00 65 00 72 00 73 00 69 00 6f 00 6e 00 00 00 00 00 2e 00 2e 00 5c 00 2e 00 2e 00 5c 00 58 00 43 00 </FindValue>
-			<ReplaceValue>   25 00 64 00 00 00 00 00 49 00 6e 00 69 00 56 00 65 00 72 00 73 00 69 00 6f 00 6e 00 00 00 00 00 2e 00 2e 00 5c 00 2e 00 2e 00 5c 00 57 00 43 00 </ReplaceValue>
-		</Patch>
-	</Patches>
+  <!-- The backup Directory, this is a relative path from XCOM Root, that is expanded -->
+  <BackupDirectory>XEW\Backup</BackupDirectory>
+  <!-- The folder to temporarily put decompressed UPK files Directory -->
+  <DecompressedUPKOutputDirectory>XEW\UpkUnpacked</DecompressedUPKOutputDirectory>
+  <!-- These are the Patching target files, each patch target specifies a single file-->
+  <PatchTargets>
+    <PatchTarget>
+      <!-- The file we want to patch-->
+      <TargetPath>XEW\Binaries\Win32\XComEW.exe</TargetPath>
+      <!-- true or false, true if the file is a UPK file, this tells it to decompress the UPK folder -->
+      <IsUPKFile>false</IsUPKFile>
+      <Patches>
+        <PatchEntry>
+          <!-- descriptive name for the patch -->
+          <Description>Read DefaultGameCore.ini from Config Folder</Description>
+          <!-- The pattern value we are trying to match, this must be unique -->
+          <FindValue>   25 00 64 00 00 00 00 00 49 00 6e 00 69 00 56 00 65 00 72 00 73 00 69 00 6f 00 6e 00 00 00 00 00 2e 00 2e 00 5c 00 2e 00 2e 00 5c 00 58 00 43 00 </FindValue>
+          <!-- The replacement value we are using, this must be unique -->
+          <ReplaceValue>   25 00 64 00 00 00 00 00 49 00 6e 00 69 00 56 00 65 00 72 00 73 00 69 00 6f 00 6e 00 00 00 00 00 2e 00 2e 00 5c 00 2e 00 2e 00 5c 00 57 00 43 00 </ReplaceValue>
+        </PatchEntry>
+      </Patches>
+    </PatchTarget>
+    <PatchTarget>
+      <!-- Example of trying to patch a UPK File-->
+      <TargetPath>XEW\XComGame\CookedPCConsole\XComGame.upk</TargetPath>
+      <IsUPKFile>true</IsUPKFile>
+      <Patches>
+        <PatchEntry>
+          <Description>Changes Gender Chance from 1/2 chance of female, to 1/8 chance of female</Description>
+          <FindValue>45 9A A7 2C 02 16</FindValue>
+          <ReplaceValue>45 9A A7 2C 08 16</ReplaceValue>
+        </PatchEntry>
+      </Patches>
+    </PatchTarget>
+  </PatchTargets>
 </PatcherConfiguration>
