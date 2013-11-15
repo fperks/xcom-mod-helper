@@ -61,7 +61,7 @@ namespace XCOMModHelper
             catch (Exception err)
             {
                 Log.Error("An Error occured during processing:{0}", err.Message);
-                //Log.Error(err);
+                Log.Error(err);
                 Log.Error("\nThe Patching Process was Aborted");
                 return -1;
             }
