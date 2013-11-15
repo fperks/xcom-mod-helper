@@ -74,12 +74,16 @@
     <Content Include="Configs\EWConfig.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Configs\EWDataGameCorePatchConfig.xml" />
+    <Content Include="Configs\EWDataGameCorePatchConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Configs\EWUnlockSecondWaveConfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>move $(TargetDir)\Configs\EWConfig.xml $(TargetDir)\EWConfig.xml
-move $(TargetDir)\Configs\EUConfig.xml $(TargetDir)\EUConfig.xml</PostBuildEvent>
+    <PostBuildEvent>move $(TargetDir)\Configs\*.xml $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
