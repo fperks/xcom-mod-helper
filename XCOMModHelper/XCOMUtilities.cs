@@ -73,7 +73,7 @@ namespace XCOMModHelper
                 throw new InvalidOperationException(string.Format("Target File [ {0} ] is Invalid to Decompress", targetFile));
             }
 
-            var arguments = string.Format("-out={0} {1}", upkOutputDirectory, targetFile);
+            var arguments = string.Format("-out=\"{0}\" \"{1}\"", upkOutputDirectory, targetFile);
             Log.Debug("Decompress Arguments [ {0} ]", arguments);
 
             var process = new Process()
@@ -91,7 +91,7 @@ namespace XCOMModHelper
             
             Log.Debug("Decompress Log:\n{0}", process.StandardOutput.ReadToEnd());
             Log.Debug("Decompress exited with code [ {0} ]", process.ExitCode);
-            if (process.ExitCode < 0)
+            if (process.ExitCode != 0)
             {
                 Log.Error("Error occured in decompress.exe\n{0}", process.StandardOutput.ReadToEnd());
                 throw new InvalidOperationException(string.Format("Cannot unpack UPK file [ {0} ]", targetFile));
