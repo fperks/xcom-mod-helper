@@ -73,7 +73,7 @@ Example Usage
 ---------------
 
 ```
-> XCOMModHelper -g EW -c EWConfig.xml
+> XCOMModHelper -c EWConfig.xml
 ```
 
 This would patch the enemy within executable with the enemy within configuration file.
